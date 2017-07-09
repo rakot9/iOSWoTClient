@@ -13,6 +13,11 @@
 		1CB31A341F0ACBF500213A60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CB31A321F0ACBF500213A60 /* Main.storyboard */; };
 		1CB31A361F0ACBF500213A60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CB31A351F0ACBF500213A60 /* Assets.xcassets */; };
 		1CB31A391F0ACBF500213A60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CB31A371F0ACBF500213A60 /* LaunchScreen.storyboard */; };
+		770408BE1F12686E00655043 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770408BD1F12686E00655043 /* UserData.swift */; };
+		770408C01F12979800655043 /* UserTanksData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770408BF1F12979800655043 /* UserTanksData.swift */; };
+		770408C21F1297DD00655043 /* DictTanksData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770408C11F1297DD00655043 /* DictTanksData.swift */; };
+		775729C81F12B44B000790FA /* ManagerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775729C71F12B44B000790FA /* ManagerData.swift */; };
+		775729CA1F12B8FC000790FA /* DetailsTanksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775729C91F12B8FC000790FA /* DetailsTanksCollectionViewController.swift */; };
 		D87865F4A648D2A3FD03133F /* Pods_WOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAB5707305B0C0EBE613B230 /* Pods_WOT.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +31,11 @@
 		1CB31A381F0ACBF500213A60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1CB31A3A1F0ACBF500213A60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		629A1278234C1EF63AD85E2E /* Pods-WOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-WOT/Pods-WOT.release.xcconfig"; sourceTree = "<group>"; };
+		770408BD1F12686E00655043 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		770408BF1F12979800655043 /* UserTanksData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTanksData.swift; sourceTree = "<group>"; };
+		770408C11F1297DD00655043 /* DictTanksData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictTanksData.swift; sourceTree = "<group>"; };
+		775729C71F12B44B000790FA /* ManagerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerData.swift; sourceTree = "<group>"; };
+		775729C91F12B8FC000790FA /* DetailsTanksCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsTanksCollectionViewController.swift; sourceTree = "<group>"; };
 		BAB5707305B0C0EBE613B230 /* Pods_WOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93DC8E9CC03F61629925133 /* Pods-WOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WOT/Pods-WOT.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +80,11 @@
 				1CB31A371F0ACBF500213A60 /* LaunchScreen.storyboard */,
 				1CB31A3A1F0ACBF500213A60 /* Info.plist */,
 				1C0EC59B1F0C13B100BAE1F8 /* WotData.swift */,
+				770408BD1F12686E00655043 /* UserData.swift */,
+				770408BF1F12979800655043 /* UserTanksData.swift */,
+				770408C11F1297DD00655043 /* DictTanksData.swift */,
+				775729C71F12B44B000790FA /* ManagerData.swift */,
+				775729C91F12B8FC000790FA /* DetailsTanksCollectionViewController.swift */,
 			);
 			path = WOT;
 			sourceTree = "<group>";
@@ -215,8 +230,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CB31A311F0ACBF500213A60 /* ViewController.swift in Sources */,
+				770408C21F1297DD00655043 /* DictTanksData.swift in Sources */,
 				1CB31A2F1F0ACBF500213A60 /* AppDelegate.swift in Sources */,
+				770408BE1F12686E00655043 /* UserData.swift in Sources */,
+				770408C01F12979800655043 /* UserTanksData.swift in Sources */,
+				775729C81F12B44B000790FA /* ManagerData.swift in Sources */,
 				1C0EC59C1F0C13B100BAE1F8 /* WotData.swift in Sources */,
+				775729CA1F12B8FC000790FA /* DetailsTanksCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,6 +5,7 @@
 //  Created by Andrew Sobolev on 03.07.17.
 //  Copyright © 2017 Andrew Sobolev. All rights reserved.
 //
+// $HOME/Library/Developer/CoreSimulator/Devices
 
 import UIKit
 import Alamofire
@@ -12,45 +13,50 @@ import RealmSwift
 import SwiftyJSON
 
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
 
+    let WoTUserId: Int = 3562955
+    var userTanksList: [String] = ["T-34", "T-34-85", "IS-2"]
+    
+    let managerData: ManagerData = ManagerData()
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-        // Do any additional setup after loading the view, typically from a nib.
-        // Get realm info
-        let realm = try! Realm()
+        super.viewDidLoad()
         
         print(Realm.Configuration.defaultConfiguration.fileURL)
         
-        let url = "https://api.worldoftanks.ru/wot/account/info/?application_id=c2efd689578281e6a764d69c433c2088&account_id=3562955"
-        
-        Alamofire.request(url, method: .get).validate().responseJSON { response in
-            
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print(json)
-                let wotData = WotData()
-                wotData.userData = json["data"]["3562955"]["nickname"].stringValue
-                //Записываем в базу ник игрока -> Frondibolla
-                print(wotData.userData)
-                try! realm.write {
-                    realm.add(wotData)
-                }
-
-            case .failure(let error):
-                print(error)
-            }
-        }
+        managerData.loadTanksDictJSON()
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userTanksList.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        cell.textLabel?.text = userTanksList[indexPath.row]
+        
+        return cell
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Details" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let destinationVC = segue.destination as! DetailsTanksCollectionViewController
+                destinationVC.tank = userTanksList[indexPath.row]
+            }
+        }
+    }
 }
 
