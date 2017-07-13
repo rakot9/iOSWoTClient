@@ -1,11 +1,13 @@
 //
 //  ViewController.swift
+//  Соболев Андрей
+//  https://github.com/rakot9/iOSWoTClient.git
 //  WOT
 //
 //  Created by Andrew Sobolev on 03.07.17.
 //  Copyright © 2017 Andrew Sobolev. All rights reserved.
 //
-// $HOME/Library/Developer/CoreSimulator/Devices
+//
 
 import UIKit
 import Alamofire
@@ -16,7 +18,7 @@ import SwiftyJSON
 class ViewController: UITableViewController {
 
     let WoTUserId: Int = 3562955
-    var userTanksList: [String] = ["T-34", "T-34-85", "IS-2"]
+    var userTanksList: [String] = []
     
     let managerData: ManagerData = ManagerData()
     
@@ -26,7 +28,23 @@ class ViewController: UITableViewController {
         
         print(Realm.Configuration.defaultConfiguration.fileURL)
         
-        managerData.loadTanksDictJSON()
+        managerData.loadUserTanksCallBack(){respFlag, userTanksList, userTanksStat  in
+            
+            self.managerData.loadTanksDictJSON(userTanks: userTanksList, userTanksStat: userTanksStat){ respFlag, dictTanks in
+                                
+                let userDBTanksData = self.managerData.loadDBUserTanks()
+                
+                for tank in userDBTanksData {
+                    self.userTanksList.append(tank.tankName)
+                }
+                
+                self.tableView.reloadData()
+                
+                return
+            }
+            
+            return
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

@@ -14,10 +14,44 @@ class DetailsTanksCollectionViewController: UICollectionViewController {
 
     var tank: String = ""
     
+    //Tanks parameters
+    var tankName: [String] = []
+    var tankNation: [String] = []
+    var tankIcon: [String] = []
+    var isPremium: [Bool] = []
+    var tankLevel: [Int] = []
+    var tankType: [String] = []
+    var tankShortName: [String] = []
+    var tankWins: [Int] = []
+    var tankBattles: [Int] = []
+    var markOfMastery: [Int] = []
+    
+    let managerData: ManagerData = ManagerData()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         print(tank)
+        
+        let userDBTanksData = self.managerData.loadDBUserTanksByTankName(tankName: tank)
+        
+        print(userDBTanksData)
+        
+        for tank in userDBTanksData[0].UserTanksInfo {
+            self.tankName.append(tank.name_i18n)
+            self.tankNation.append(tank.nation_i18n)
+            self.tankIcon.append(tank.image_small)
+            self.tankLevel.append(tank.level)
+            self.tankType.append(tank.type_i18n)
+            self.isPremium.append(tank.is_premium)
+            self.tankShortName.append(tank.short_name_i18n)
+        }
+        
+        for tankStat in userDBTanksData[0].UserTanksStat {
+            self.tankBattles.append(tankStat.battles)
+            self.tankWins.append(tankStat.wins)
+            self.markOfMastery.append(tankStat.mark_of_mastery)
+        }
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -53,7 +87,8 @@ class DetailsTanksCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 1
+        //return 1
+        return tankName.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -62,12 +97,60 @@ class DetailsTanksCollectionViewController: UICollectionViewController {
         // Configure the cell
     
         let label1: UILabel = cell.viewWithTag(1) as! UILabel
-        label1.text = "Tank name"
-        let imageView: UIImageView = cell.viewWithTag(2) as! UIImageView
-        imageView.image = UIImage(named: "ussr-r04_t-34")
-        let label2: UILabel = cell.viewWithTag(3) as! UILabel
-        label2.text = "Statistic tank"
+        //label1.text = "Tank name"
+        label1.text = String(tankName[indexPath.row])
         
+        let imageView: UIImageView = cell.viewWithTag(2) as! UIImageView
+        //imageView.image = UIImage(named: "ussr-r04_t-34")
+        let imgTankIcon = URL(string: tankIcon[indexPath.row])
+        let imageData = NSData(contentsOf: imgTankIcon! as URL)
+        if imageData != nil {
+            imageView.image = UIImage(data: imageData! as Data)
+        }
+        
+        let label2: UILabel = cell.viewWithTag(3) as! UILabel
+        //label2.text = "Statistic tank"
+        label2.text = String(tankNation[indexPath.row])
+        
+        let label3: UILabel = cell.viewWithTag(4) as! UILabel
+        label3.text = String(tankLevel[indexPath.row])
+        
+        let label4: UILabel = cell.viewWithTag(5) as! UILabel
+        if isPremium[indexPath.row]{
+            label4.text = "Да"
+        }
+        else{
+            label4.text =  "Нет"
+        }
+        
+        let label5: UILabel = cell.viewWithTag(6) as! UILabel
+        label5.text = String(tankShortName[indexPath.row])
+        
+        let label6: UILabel = cell.viewWithTag(7) as! UILabel
+        label6.text = String(tankType[indexPath.row])
+        
+        let label7: UILabel = cell.viewWithTag(8) as! UILabel
+        label7.text = String(tankBattles[indexPath.row])
+        
+        let label8: UILabel = cell.viewWithTag(9) as! UILabel
+        label8.text = String(tankWins[indexPath.row])
+        
+        let label9: UILabel = cell.viewWithTag(10) as! UILabel
+        if(markOfMastery[indexPath.row] == 0){
+            label9.text = "Отсутствует"
+        }
+        if(markOfMastery[indexPath.row] == 1){
+            label9.text = "3 степень"
+        }
+        if(markOfMastery[indexPath.row] == 2){
+            label9.text = "2 степень"
+        }
+        if(markOfMastery[indexPath.row] == 3){
+            label9.text = "1 степень"
+        }
+        if(markOfMastery[indexPath.row] == 4){
+            label9.text = "Мастер"
+        }
         
         return cell
     }

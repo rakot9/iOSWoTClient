@@ -10,5 +10,11 @@ import Foundation
 import RealmSwift
 
 class UserTanksData: Object{
-    dynamic var tanksData: String = ""
+    dynamic var tankName: String = ""
+    var UserTanksStat = List<UserTankStat>()
+    var UserTanksInfo = List<DictTanksData>()
+    
+    override static func primaryKey() -> String? {
+        return "tankName"
+    }
 }
