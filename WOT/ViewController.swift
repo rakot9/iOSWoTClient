@@ -17,7 +17,6 @@ import SwiftyJSON
 
 class ViewController: UITableViewController {
 
-    let WoTUserId: Int = 3562955
     var userTanksList: [String] = []
     
     let managerData: ManagerData = ManagerData()
@@ -27,6 +26,8 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         
         print(Realm.Configuration.defaultConfiguration.fileURL)
+        
+        managerData.readPropertyList()
         
         managerData.loadUserTanksCallBack(){respFlag, userTanksList, userTanksStat  in
             
@@ -60,12 +61,26 @@ class ViewController: UITableViewController {
         
         cell.textLabel?.text = userTanksList[indexPath.row]
         
+        cell.backgroundColor = .clear
+        
+        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        
         return cell
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //self.clearsSelectionOnViewWillAppear = self.splitViewController!.isCollapsed
+        super.viewWillAppear(animated)
+        
+        // Add a background view to the table view
+        let backgroundImage = UIImage(named: "strv_wallpaper.jpg")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

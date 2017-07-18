@@ -97,13 +97,14 @@ class DetailsTanksCollectionViewController: UICollectionViewController {
         // Configure the cell
     
         let label1: UILabel = cell.viewWithTag(1) as! UILabel
-        //label1.text = "Tank name"
         label1.text = String(tankName[indexPath.row])
         
         let imageView: UIImageView = cell.viewWithTag(2) as! UIImageView
-        //imageView.image = UIImage(named: "ussr-r04_t-34")
+        
         let imgTankIcon = URL(string: tankIcon[indexPath.row])
+        
         let imageData = NSData(contentsOf: imgTankIcon! as URL)
+        
         if imageData != nil {
             imageView.image = UIImage(data: imageData! as Data)
         }

@@ -16,6 +16,7 @@
 		770408BE1F12686E00655043 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770408BD1F12686E00655043 /* UserData.swift */; };
 		770408C01F12979800655043 /* UserTanksData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770408BF1F12979800655043 /* UserTanksData.swift */; };
 		770408C21F1297DD00655043 /* DictTanksData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770408C11F1297DD00655043 /* DictTanksData.swift */; };
+		773097531F1DF7BE0079358E /* appconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 773097521F1DF7BE0079358E /* appconfig.plist */; };
 		775729C81F12B44B000790FA /* ManagerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775729C71F12B44B000790FA /* ManagerData.swift */; };
 		775729CA1F12B8FC000790FA /* DetailsTanksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775729C91F12B8FC000790FA /* DetailsTanksCollectionViewController.swift */; };
 		776219F41F16A92800E13867 /* UserTankStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776219F31F16A92800E13867 /* UserTankStat.swift */; };
@@ -35,6 +36,7 @@
 		770408BD1F12686E00655043 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		770408BF1F12979800655043 /* UserTanksData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTanksData.swift; sourceTree = "<group>"; };
 		770408C11F1297DD00655043 /* DictTanksData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictTanksData.swift; sourceTree = "<group>"; };
+		773097521F1DF7BE0079358E /* appconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appconfig.plist; sourceTree = "<group>"; };
 		775729C71F12B44B000790FA /* ManagerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerData.swift; sourceTree = "<group>"; };
 		775729C91F12B8FC000790FA /* DetailsTanksCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsTanksCollectionViewController.swift; sourceTree = "<group>"; };
 		776219F31F16A92800E13867 /* UserTankStat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTankStat.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				775729C71F12B44B000790FA /* ManagerData.swift */,
 				775729C91F12B8FC000790FA /* DetailsTanksCollectionViewController.swift */,
 				776219F31F16A92800E13867 /* UserTankStat.swift */,
+				773097521F1DF7BE0079358E /* appconfig.plist */,
 			);
 			path = WOT;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				773097531F1DF7BE0079358E /* appconfig.plist in Resources */,
 				1CB31A391F0ACBF500213A60 /* LaunchScreen.storyboard in Resources */,
 				1CB31A361F0ACBF500213A60 /* Assets.xcassets in Resources */,
 				1CB31A341F0ACBF500213A60 /* Main.storyboard in Resources */,

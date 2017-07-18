@@ -13,11 +13,12 @@ import SwiftyJSON
 
 class ManagerData{
     
-    let WoTUserId: Int = 3562955
+    var WoTUserId: Int = 0
+    var WoTAppId: String = ""
     
     func loadTanksDictJSON(userTanks: [Int], userTanksStat: [(wins: Int, battles: Int, mark_of_mastery: Int, tankId: Int)], completionHandler: @escaping(Bool, [(json: JSON, id: Int)]) -> ()){
 
-        let urlTanksDict = "https://api.worldoftanks.ru/wot/encyclopedia/tanks/?application_id=c2efd689578281e6a764d69c433c2088"
+        let urlTanksDict = "https://api.worldoftanks.ru/wot/encyclopedia/tanks/?application_id=\(self.WoTAppId)"
         
         // Do any additional setup after loading the view, typically from a nib.
         // Get realm info
@@ -77,11 +78,7 @@ class ManagerData{
                     }
                     
                 }
-//                print(self.dictTanksList)
-//                try! realm.write {
-//                    realm.add(userTanks)
-//                }
-
+                
                 completionHandler(true, dictTanksList)
                 
             case .failure(let error):
@@ -97,7 +94,7 @@ class ManagerData{
     func loadUserTanksCallBack(completionHandler: @escaping(Bool, [Int], [(wins: Int, battles: Int, mark_of_mastery: Int, tankId: Int)]) -> ()){
         
         // Url for get all user tanks
-        let urlUserTanks = "https://api.worldoftanks.ru/wot/account/tanks/?application_id=c2efd689578281e6a764d69c433c2088&account_id=\(self.WoTUserId)"
+        let urlUserTanks = "https://api.worldoftanks.ru/wot/account/tanks/?application_id=\(self.WoTAppId)&account_id=\(self.WoTUserId)"
         
         // #Getting users tanks
         Alamofire.request(urlUserTanks, method: .get).validate().responseJSON { response in
@@ -140,5 +137,38 @@ class ManagerData{
         let realm = try! Realm()
         let data = realm.objects(UserTanksData.self).filter("tankName BEGINSWITH %@", tankName)
         return data
+    }
+    
+    func readPropertyList(){
+        
+        var format = PropertyListSerialization.PropertyListFormat.xml
+        
+        var plistData:[String:AnyObject] = [:]
+        
+        let plistPath:String? = Bundle.main.path(forResource: "appconfig", ofType: "plist")
+        
+        let plistXML = FileManager.default.contents(atPath: plistPath!)
+        
+        do{
+            plistData = try PropertyListSerialization.propertyList(from: plistXML!,
+                                                                             options: .mutableContainersAndLeaves,
+                                                                             format: &format)
+                as! [String : AnyObject]
+        }
+        catch{
+            print("Error reading plist: \(error), format: \(format)")
+        }
+        
+        for (key,value) in plistData{
+
+            if key == "accountid" {
+                let accId = value as! String
+                self.WoTUserId = Int(accId)!
+            }
+            
+            if key == "appid" {
+                self.WoTAppId = value as! String
+            }
+        }
     }
 }
