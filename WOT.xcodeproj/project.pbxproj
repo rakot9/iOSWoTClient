@@ -17,6 +17,8 @@
 		770408C01F12979800655043 /* UserTanksData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770408BF1F12979800655043 /* UserTanksData.swift */; };
 		770408C21F1297DD00655043 /* DictTanksData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770408C11F1297DD00655043 /* DictTanksData.swift */; };
 		773097531F1DF7BE0079358E /* appconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 773097521F1DF7BE0079358E /* appconfig.plist */; };
+		7744CC6D1F25E67C00E8BD17 /* ManagerFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7744CC6C1F25E67C00E8BD17 /* ManagerFile.swift */; };
+		7744CC701F26243B00E8BD17 /* bridgeTar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7744CC6F1F26243B00E8BD17 /* bridgeTar.m */; };
 		775729C81F12B44B000790FA /* ManagerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775729C71F12B44B000790FA /* ManagerData.swift */; };
 		775729CA1F12B8FC000790FA /* DetailsTanksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775729C91F12B8FC000790FA /* DetailsTanksCollectionViewController.swift */; };
 		776219F41F16A92800E13867 /* UserTankStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776219F31F16A92800E13867 /* UserTankStat.swift */; };
@@ -37,6 +39,9 @@
 		770408BF1F12979800655043 /* UserTanksData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTanksData.swift; sourceTree = "<group>"; };
 		770408C11F1297DD00655043 /* DictTanksData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictTanksData.swift; sourceTree = "<group>"; };
 		773097521F1DF7BE0079358E /* appconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appconfig.plist; sourceTree = "<group>"; };
+		7744CC6C1F25E67C00E8BD17 /* ManagerFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerFile.swift; sourceTree = "<group>"; };
+		7744CC6E1F26243A00E8BD17 /* WOT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WOT-Bridging-Header.h"; sourceTree = "<group>"; };
+		7744CC6F1F26243B00E8BD17 /* bridgeTar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bridgeTar.m; sourceTree = "<group>"; };
 		775729C71F12B44B000790FA /* ManagerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerData.swift; sourceTree = "<group>"; };
 		775729C91F12B8FC000790FA /* DetailsTanksCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsTanksCollectionViewController.swift; sourceTree = "<group>"; };
 		776219F31F16A92800E13867 /* UserTankStat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTankStat.swift; sourceTree = "<group>"; };
@@ -91,6 +96,9 @@
 				775729C91F12B8FC000790FA /* DetailsTanksCollectionViewController.swift */,
 				776219F31F16A92800E13867 /* UserTankStat.swift */,
 				773097521F1DF7BE0079358E /* appconfig.plist */,
+				7744CC6C1F25E67C00E8BD17 /* ManagerFile.swift */,
+				7744CC6F1F26243B00E8BD17 /* bridgeTar.m */,
+				7744CC6E1F26243A00E8BD17 /* WOT-Bridging-Header.h */,
 			);
 			path = WOT;
 			sourceTree = "<group>";
@@ -147,6 +155,7 @@
 				TargetAttributes = {
 					1CB31A2A1F0ACBF500213A60 = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -238,6 +247,7 @@
 			files = (
 				1CB31A311F0ACBF500213A60 /* ViewController.swift in Sources */,
 				770408C21F1297DD00655043 /* DictTanksData.swift in Sources */,
+				7744CC701F26243B00E8BD17 /* bridgeTar.m in Sources */,
 				1CB31A2F1F0ACBF500213A60 /* AppDelegate.swift in Sources */,
 				770408BE1F12686E00655043 /* UserData.swift in Sources */,
 				776219F41F16A92800E13867 /* UserTankStat.swift in Sources */,
@@ -245,6 +255,7 @@
 				775729C81F12B44B000790FA /* ManagerData.swift in Sources */,
 				1C0EC59C1F0C13B100BAE1F8 /* WotData.swift in Sources */,
 				775729CA1F12B8FC000790FA /* DetailsTanksCollectionViewController.swift in Sources */,
+				7744CC6D1F25E67C00E8BD17 /* ManagerFile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,10 +381,13 @@
 			baseConfigurationReference = F93DC8E9CC03F61629925133 /* Pods-WOT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = WOT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.WOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WOT/WOT-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -383,10 +397,12 @@
 			baseConfigurationReference = 629A1278234C1EF63AD85E2E /* Pods-WOT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = WOT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.WOT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WOT/WOT-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

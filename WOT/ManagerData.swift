@@ -27,13 +27,25 @@ class ManagerData{
         // #Getting dictionary tanks
         Alamofire.request(urlTanksDict, method: .get).validate().responseJSON { response in
             
-            var dictTanksList: [(json: JSON, id: Int)] = []
+            let dictTanksList: [(json: JSON, id: Int)] = []
             
             switch response.result {
                 
             case .success(let value):
                 
                 let json = JSON(value)
+                
+                let fManager = ManagerFile(fPath: "/tmp", fName: "test.json")
+                
+                let allTanks = json.description
+                
+                fManager.create()
+                
+                fManager.writeJSON(content: allTanks)
+                
+                fManager.gzip()
+                
+                fManager.delete()
                 
                 for (String: tankId, JSON: jsonTanks) in json["data"] {
                     

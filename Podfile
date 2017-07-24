@@ -8,6 +8,7 @@ target 'WOT' do
   pod 'Alamofire', '~> 4.5'
   pod 'SwiftyJSON', '~> 3.1.4'
   pod 'RealmSwift', '~> 2.8.3'
+  pod 'NVHTarGzip'
 
   # Pods for WOT
 
