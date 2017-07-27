@@ -25,19 +25,22 @@ class DetailsTanksCollectionViewController: UICollectionViewController {
     var tankWins: [Int] = []
     var tankBattles: [Int] = []
     var markOfMastery: [Int] = []
+    var chassis_rotation_speed: [Int] = []
     
     let managerData: ManagerData = ManagerData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        managerData.readPropertyList()
+        
         print(tank)
         
         let userDBTanksData = self.managerData.loadDBUserTanksByTankName(tankName: tank)
         
         print(userDBTanksData)
         
-        for tank in userDBTanksData[0].UserTanksInfo {
+        for var tank in userDBTanksData[0].UserTanksInfo {
             self.tankName.append(tank.name_i18n)
             self.tankNation.append(tank.nation_i18n)
             self.tankIcon.append(tank.image_small)
@@ -45,6 +48,14 @@ class DetailsTanksCollectionViewController: UICollectionViewController {
             self.tankType.append(tank.type_i18n)
             self.isPremium.append(tank.is_premium)
             self.tankShortName.append(tank.short_name_i18n)
+            
+            print("1: ", tank)
+            print("Load duspatch tank info")
+            //var tankInfo: DictTanksData = DictTanksData();
+            self.managerData.queueLoadTankDetail(tank_id: String(tank.tank_id)) { respFlag, tankInfo in
+                print("2: ", tankInfo)
+                self.chassis_rotation_speed.append(tankInfo.chassis_rotation_speed)
+            }
         }
         
         for tankStat in userDBTanksData[0].UserTanksStat {
@@ -152,6 +163,9 @@ class DetailsTanksCollectionViewController: UICollectionViewController {
         if(markOfMastery[indexPath.row] == 4){
             label9.text = "Мастер"
         }
+        
+        //let label10: UILabel = cell.viewWithTag(11) as! UILabel
+        //label10.text = String(chassis_rotation_speed[indexPath.row])
         
         return cell
     }

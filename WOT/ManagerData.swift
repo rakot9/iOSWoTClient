@@ -183,4 +183,40 @@ class ManagerData{
             }
         }
     }
+    
+    func queueLoadTankDetail(tank_id: String, completionHandler: @escaping(Bool, DictTanksData) -> ())
+    {
+        let queue = DispatchQueue(label: "com.cnoon.response-queue", qos: .utility, attributes: [.concurrent])
+
+        // Url for get all user tanks
+        let urlTankDetail = "https://api.worldoftanks.ru/wot/encyclopedia/tankinfo/?application_id=\(self.WoTAppId)&tank_id=\(tank_id)"
+        
+        Alamofire.request(urlTankDetail, method: .get).response(
+            queue: queue,
+            responseSerializer: DataRequest.jsonResponseSerializer(),
+            completionHandler: { response in
+                // You are now running on the concurrent `queue` you created earlier.
+                print("Parsing JSON on thread: \(Thread.current) is main thread: \(Thread.isMainThread)")
+                
+                // Validate your JSON response and convert into model objects if necessary response.result.value
+                
+                let json = JSON(response.result.value)
+                
+                print(json["data"][String(tank_id)])
+                
+                let data = json["data"][String(tank_id)]
+                
+                //Set detail tank info
+                var tank: DictTanksData = DictTanksData()
+                
+                tank.chassis_rotation_speed = data["chassis_rotation_speed"].intValue
+                
+                // To update anything on the main thread, just jump back on like so.
+                DispatchQueue.main.async {
+                    print("Am I back on the main thread: \(Thread.isMainThread)")
+                    completionHandler(true, tank)
+                }
+            }
+        )
+    }
 }
