@@ -106,8 +106,29 @@ class ManagerFile {
             if gzipError != nil{
                 print("Error gzipping \(gzipError)")
             }
-            
         })
+        
+        NotificationCenter.default.addObserver(forName:Notification.Name(rawValue:"Gzip"), object:nil, queue:nil, using:self.catchNotification)
+        
+        NotificationCenter.default.post(name:Notification.Name(rawValue:"Gzip"),
+                object: nil,
+                userInfo: ["message":"Created backup!", "date":Date()])
+    }
+    
+    func catchNotification(notification:Notification) -> Void {
+        print("Catch notification")        
+//        guard let userInfo = notification.userInfo,
+//            let message  = userInfo["message"] as? String,
+//            let date     = userInfo["date"]    as? Date else {
+//                print("No userInfo found in notification")
+//                return
+//        }
+//        
+//        let alert = UIAlertController(title: "Notification!",
+//                                      message:"\(message) received at \(date)",
+//            preferredStyle: UIAlertControllerStyle.alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+//        present(alert, animated: true, completion: nil)
     }
     
     func gunzip(fileName: String)
