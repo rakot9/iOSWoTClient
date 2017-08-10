@@ -10,5 +10,10 @@ import Foundation
 import RealmSwift
 
 class WotData: Object{
-    dynamic var userData: String = ""
+    dynamic var nickData: String = ""
+    var UsersData = List<UserData>()
+    
+    override static func primaryKey() -> String? {
+        return "nickData"
+    }
 }

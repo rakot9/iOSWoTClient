@@ -22,6 +22,8 @@
 		775729C81F12B44B000790FA /* ManagerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775729C71F12B44B000790FA /* ManagerData.swift */; };
 		775729CA1F12B8FC000790FA /* DetailsTanksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775729C91F12B8FC000790FA /* DetailsTanksCollectionViewController.swift */; };
 		776219F41F16A92800E13867 /* UserTankStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776219F31F16A92800E13867 /* UserTankStat.swift */; };
+		778E567A1F3895D100836B15 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E56791F3895D100836B15 /* UserViewController.swift */; };
+		778E56801F389D4200836B15 /* UserDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778E567F1F389D4200836B15 /* UserDetailsTableViewController.swift */; };
 		D87865F4A648D2A3FD03133F /* Pods_WOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAB5707305B0C0EBE613B230 /* Pods_WOT.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,8 @@
 		775729C71F12B44B000790FA /* ManagerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerData.swift; sourceTree = "<group>"; };
 		775729C91F12B8FC000790FA /* DetailsTanksCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsTanksCollectionViewController.swift; sourceTree = "<group>"; };
 		776219F31F16A92800E13867 /* UserTankStat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTankStat.swift; sourceTree = "<group>"; };
+		778E56791F3895D100836B15 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		778E567F1F389D4200836B15 /* UserDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewController.swift; sourceTree = "<group>"; };
 		BAB5707305B0C0EBE613B230 /* Pods_WOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93DC8E9CC03F61629925133 /* Pods-WOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WOT/Pods-WOT.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,6 +103,8 @@
 				7744CC6C1F25E67C00E8BD17 /* ManagerFile.swift */,
 				7744CC6F1F26243B00E8BD17 /* bridgeTar.m */,
 				7744CC6E1F26243A00E8BD17 /* WOT-Bridging-Header.h */,
+				778E56791F3895D100836B15 /* UserViewController.swift */,
+				778E567F1F389D4200836B15 /* UserDetailsTableViewController.swift */,
 			);
 			path = WOT;
 			sourceTree = "<group>";
@@ -246,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CB31A311F0ACBF500213A60 /* ViewController.swift in Sources */,
+				778E567A1F3895D100836B15 /* UserViewController.swift in Sources */,
 				770408C21F1297DD00655043 /* DictTanksData.swift in Sources */,
 				7744CC701F26243B00E8BD17 /* bridgeTar.m in Sources */,
 				1CB31A2F1F0ACBF500213A60 /* AppDelegate.swift in Sources */,
@@ -255,6 +262,7 @@
 				775729C81F12B44B000790FA /* ManagerData.swift in Sources */,
 				1C0EC59C1F0C13B100BAE1F8 /* WotData.swift in Sources */,
 				775729CA1F12B8FC000790FA /* DetailsTanksCollectionViewController.swift in Sources */,
+				778E56801F389D4200836B15 /* UserDetailsTableViewController.swift in Sources */,
 				7744CC6D1F25E67C00E8BD17 /* ManagerFile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

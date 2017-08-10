@@ -14,10 +14,11 @@ import Alamofire
 import RealmSwift
 import SwiftyJSON
 
-
 class ViewController: UITableViewController {
 
+    var nick: String = ""
     var userTanksList: [String] = []
+    weak var delegate: ViewControllerDelegate?
     
     let managerData: ManagerData = ManagerData()
     
@@ -26,25 +27,35 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         
         print(Realm.Configuration.defaultConfiguration.fileURL)
+        print(nick)
+        
+        delegate?.reloadTableView()
         
         managerData.readPropertyList()
         
-        managerData.loadUserTanksCallBack(){respFlag, userTanksList, userTanksStat  in
+        managerData.loadUserData(nick: nick){respFlag, account_id in
             
-            self.managerData.loadTanksDictJSON(userTanks: userTanksList, userTanksStat: userTanksStat){ respFlag, dictTanks in
+            print("Found account id")
+            
+            print(account_id)
+        
+            self.managerData.loadUserTanksCallBack(account_id: account_id){respFlag, userTanksList, userTanksStat  in
+            
+                self.managerData.loadTanksDictJSON(userTanks: userTanksList, userTanksStat: userTanksStat){ respFlag, dictTanks in
                                 
-                let userDBTanksData = self.managerData.loadDBUserTanks()
+                    let userDBTanksData = self.managerData.loadDBUserTanks()
                 
-                for tank in userDBTanksData {
-                    self.userTanksList.append(tank.tankName)
+                    for tank in userDBTanksData {
+                        self.userTanksList.append(tank.tankName)
+                    }
+                
+                    self.tableView.reloadData()
+                    
+                    return
                 }
-                
-                self.tableView.reloadData()
-                
+            
                 return
             }
-            
-            return
         }
     }
     
@@ -85,7 +96,7 @@ class ViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Details" {
-            if let indexPath = tableView.indexPathForSelectedRow {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
                 let destinationVC = segue.destination as! DetailsTanksCollectionViewController
                 destinationVC.tank = userTanksList[indexPath.row]
             }

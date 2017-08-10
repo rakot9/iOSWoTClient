@@ -11,4 +11,5 @@ import RealmSwift
 
 class UserData: Object{
     dynamic var userNickData: String = ""
+    dynamic var userIdData: Int = 0
 }

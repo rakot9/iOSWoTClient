@@ -103,10 +103,10 @@ class ManagerData{
     /**
      *  Function use calback
      **/
-    func loadUserTanksCallBack(completionHandler: @escaping(Bool, [Int], [(wins: Int, battles: Int, mark_of_mastery: Int, tankId: Int)]) -> ()){
+    func loadUserTanksCallBack(account_id: Int, completionHandler: @escaping(Bool, [Int], [(wins: Int, battles: Int, mark_of_mastery: Int, tankId: Int)]) -> ()){
         
         // Url for get all user tanks
-        let urlUserTanks = "https://api.worldoftanks.ru/wot/account/tanks/?application_id=\(self.WoTAppId)&account_id=\(self.WoTUserId)"
+        let urlUserTanks = "https://api.worldoftanks.ru/wot/account/tanks/?application_id=\(self.WoTAppId)&account_id=\(account_id)"
         
         // #Getting users tanks
         Alamofire.request(urlUserTanks, method: .get).validate().responseJSON { response in
@@ -135,6 +135,50 @@ class ManagerData{
         }
     }
     
+    func loadUserData(nick: String, completionHandler: @escaping(Bool, Int) -> ())
+    {
+        let urlUserInfo = "https://api.worldoftanks.ru/wot/account/list/?application_id=\(self.WoTAppId)&search=\(nick)"
+        
+        let realm = try! Realm()
+        
+        // #Getting dictionary tanks
+        Alamofire.request(urlUserInfo, method: .get).validate().responseJSON { response in
+            
+            let dictTanksList: [(json: JSON, id: Int)] = []
+            
+            switch response.result {
+                
+            case .success(let value):
+                
+                let json = JSON(value)
+                
+                print(value)
+                
+                let account_id: Int = json["data"][0]["account_id"].intValue
+                
+                print(account_id)
+                
+                var userData = UserData()
+                userData.userIdData = account_id
+                userData.userNickData = nick
+                
+                var wotData = WotData()
+                wotData.nickData = nick
+                wotData.UsersData.append(userData)
+                
+                try! realm.write {
+                    realm.add(wotData, update: true)
+                }
+                
+                completionHandler(true, account_id)
+                
+            case .failure(let error):
+                print(error)
+                completionHandler(true, 0)
+            }
+        }
+    }
+    
     func loadDBUserTanks() -> Results<UserTanksData> {
         
         let realm = try! Realm()
@@ -148,6 +192,22 @@ class ManagerData{
         
         let realm = try! Realm()
         let data = realm.objects(UserTanksData.self).filter("tankName BEGINSWITH %@", tankName)
+        return data
+    }
+    
+    func loadDBUserByNickName(nickName: String) -> Results<UserData> {
+        
+        let realm = try! Realm()
+        let data = realm.objects(UserData.self).filter("nickName BEGINSWITH %@", nickName)
+        return data
+    }
+    
+    func loadDBUsers() -> Results<WotData> {
+        
+        let realm = try! Realm()
+        
+        let data = realm.objects(WotData)
+        
         return data
     }
     
